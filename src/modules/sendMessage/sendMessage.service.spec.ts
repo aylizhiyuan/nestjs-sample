@@ -65,11 +65,8 @@ describe('sendMessage service', () => {
                 return Promise.resolve(result)
             })
             const res = await sendMessageService.SendMessage()
-            if (res.code === 2000) {
-                expect(res.message).toEqual('发送成功')
-            } else {
-                expect(res.message).toEqual('发送失败')
-            }
+            // @ts-ignore
+            expect(res.message).toEqual('发送成功')
         })
     })
 })
