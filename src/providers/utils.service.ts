@@ -1,5 +1,6 @@
 import * as bcrypt from 'bcrypt'
 import * as _ from 'lodash'
+import * as fs from 'fs'
 export class UtilsService {
     /**
      * generate hash from password or string
@@ -28,5 +29,19 @@ export class UtilsService {
      */
     static validateHash(password: string, hash: string): Promise<boolean> {
         return bcrypt.compare(password, hash)
+    }
+    /**
+     * validate file is readable
+     * @param {string} path
+     * @returns {Promise<boolean>}
+     */
+    static isFile(path: string): boolean {
+        try {
+            fs.accessSync(path, fs.constants.R_OK | fs.constants.W_OK)
+            return true
+        } catch (e) {
+            console.log(e)
+            return false
+        }
     }
 }

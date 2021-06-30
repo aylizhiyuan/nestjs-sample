@@ -1,7 +1,7 @@
-import { Logger, Controller, Get, Body, Post, Request, Response, UseGuards } from '@nestjs/common'
+import { Logger, Controller, Get, Body, Query, Post, Request, Response, UseGuards } from '@nestjs/common'
 import { SendMessageService } from './sendMessage.service'
 import { ConfigService } from '@nestjs/config'
-import { ContextService } from '@/providers/context.service'
+import { ContextService } from '../../providers/context.service'
 @Controller()
 export class SendMessageController {
     constructor(
@@ -10,9 +10,8 @@ export class SendMessageController {
         private readonly contextService: ContextService
     ) {}
 
-    @Post('/sendMessage')
-    async sendMessage(@Body() param: { payload: any }): Promise<any> {
-        const res = this.sms.SendMessage(param.payload)
-        return res
-    }
+    // @Get('/sendMessage')
+    // async sendMessage(): Promise<any> {
+    //     return this.sms.SendMessage()
+    // }
 }
