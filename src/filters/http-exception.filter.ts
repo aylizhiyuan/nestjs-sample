@@ -11,6 +11,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const status = exception.getStatus()
         if (exception instanceof UserIdInvalidException) {
             //针对我们自定义的异常我们就直接在这里进行处理
+            // 抛出错误的时候变可以自定义我们返回的内容
             response.status(status).json({
                 errorCode: exception.getErrorCode(),
                 errorMessage: exception.getErrorMessage(),
